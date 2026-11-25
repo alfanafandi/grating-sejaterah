@@ -10,6 +10,16 @@ Aplikasi Next.js dan MySQL untuk katalog produk dan jasa, pengajuan penawaran mu
 
 `DEMO_MODE=1` mengisi contoh katalog pada basis data kosong. Gambar contoh di `public/images` merupakan ilustrasi yang dibuat dengan ImageGen. Jika `SALES_WHATSAPP` kosong, WhatsApp menerima draf contoh tanpa tujuan tetap.
 
+## Bukti implementasi awal
+
+Demo memakai dua produk dengan jumlah berbeda, yaitu Grating Polos × 2 dan Grating Bergerigi × 3. Penawaran **#1** muncul di konfirmasi pelanggan dan detail admin. Pada detail admin, status penawaran disimpan sebagai **Diproses**.
+
+1. Pilih produk dari katalog. [Screenshot katalog](pti/bukti-implementasi/01-katalog.png)
+2. Periksa kedua produk, jumlah, dan subtotal di keranjang. [Screenshot keranjang](pti/bukti-implementasi/02-keranjang.png)
+3. Isi kontak dan alamat demo. [Screenshot checkout](pti/bukti-implementasi/03-checkout.png)
+4. Periksa ID penawaran yang tersimpan dan tautan draf WhatsApp. [Screenshot konfirmasi](pti/bukti-implementasi/04-konfirmasi.png)
+5. Buka penawaran yang sama di admin untuk melihat item dan statusnya. [Screenshot detail admin](pti/bukti-implementasi/05-detail-admin.png)
+
 ## Menyiapkan produksi
 
 - Gunakan basis data baru dengan `DEMO_MODE=0` dan akun MySQL aplikasi dengan hak yang sesuai. Jalankan `npm run db:setup` menggunakan kredensial instalasi yang dapat membuat skema.
