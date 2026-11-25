@@ -1,0 +1,89 @@
+CREATE TABLE IF NOT EXISTS users (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  name VARCHAR(100) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS admin_sessions (
+  token_hash CHAR(64) PRIMARY KEY,
+  user_id INT UNSIGNED NOT NULL,
+  expires_at DATETIME NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS company_profiles (
+  id INT UNSIGNED PRIMARY KEY,
+  company_name VARCHAR(150) NOT NULL,
+  description TEXT NOT NULL,
+  address VARCHAR(255) NOT NULL,
+  maps_url VARCHAR(512) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  whatsapp_number VARCHAR(20) NOT NULL,
+  capacity TEXT NOT NULL,
+  quality TEXT NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS categories (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL UNIQUE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS products (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  category_id INT UNSIGNED NOT NULL,
+  name VARCHAR(150) NOT NULL,
+  type ENUM('PRODUK','JASA') NOT NULL DEFAULT 'PRODUK',
+  surface ENUM('PLAIN','SERRATED') NULL,
+  description TEXT NOT NULL,
+  dimensions VARCHAR(100) NOT NULL DEFAULT '',
+  bearing_bar VARCHAR(100) NOT NULL DEFAULT '',
+  pitch VARCHAR(100) NOT NULL DEFAULT '',
+  finishing VARCHAR(100) NOT NULL DEFAULT '',
+  unit VARCHAR(32) NOT NULL,
+  price_type ENUM('TETAP','CUSTOM') NOT NULL,
+  base_price DECIMAL(15,2) NULL,
+  stock_status ENUM('TERSEDIA','PRE_ORDER','HABIS') NOT NULL,
+  image_url VARCHAR(255) NOT NULL DEFAULT '',
+  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+  FOREIGN KEY (category_id) REFERENCES categories(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS portfolios (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  project_title VARCHAR(150) NOT NULL,
+  client_name VARCHAR(100) NOT NULL DEFAULT '',
+  location VARCHAR(150) NOT NULL DEFAULT '',
+  completion_date DATE NULL,
+  description TEXT NOT NULL,
+  image_url VARCHAR(255) NOT NULL DEFAULT '',
+  is_published BOOLEAN NOT NULL DEFAULT FALSE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS inquiries (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  customer_name VARCHAR(100) NOT NULL,
+  customer_phone VARCHAR(20) NOT NULL,
+  shipping_address VARCHAR(255) NOT NULL,
+  custom_notes TEXT NOT NULL,
+  status ENUM('BARU','PENAWARAN_DIKIRIM','DIPROSES','SELESAI','BATAL') NOT NULL DEFAULT 'BARU',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  idempotency_key CHAR(36) NOT NULL UNIQUE,
+  request_hash CHAR(64) NOT NULL,
+  whatsapp_url TEXT,
+  INDEX inquiries_status_recent (status, created_at)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS inquiry_items (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  inquiry_id INT UNSIGNED NOT NULL,
+  product_id INT UNSIGNED NOT NULL,
+  quantity INT UNSIGNED NOT NULL,
+  product_name_snapshot VARCHAR(150) NOT NULL,
+  unit_price_snapshot DECIMAL(15,2) NULL,
+  unit_snapshot VARCHAR(32) NOT NULL,
+  item_notes TEXT NOT NULL,
+  FOREIGN KEY (inquiry_id) REFERENCES inquiries(id),
+  FOREIGN KEY (product_id) REFERENCES products(id),
+  CHECK (quantity > 0)
+) ENGINE=InnoDB;
