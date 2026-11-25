@@ -28,8 +28,6 @@ Kebutuhan cukup jelas untuk memulai desain dan pembangunan. Gunakan matriks SRS 
 
 ## 3. Peta halaman dan arah visual
 
-![Referensi dashboard dengan kartu terang dan aksen terakota](pti/referensi-visual.png)
-
 **Arah desain setelah revisi.** Navigasi bertingkat, urutan aplikasi dan katalog, serta hierarki spesifikasi mengambil acuan dari [GKD Group](https://www.gkd-group.com/en/architecture/products/). Gunakan identitas visual UD Grating Sejahterah dengan palet hijau abu-abu dan terakota, tipografi DM Sans, foto grating, dan garis pemisah tipis.
 
 | Halaman | Susunan dan tindakan utama |
@@ -129,7 +127,9 @@ Rencana produksi menggunakan satu server Linux, reverse proxy HTTPS, MySQL priva
 
 ## Sumber lokal
 
-- [SRS revisi dan matriks FR/UC](pti/Revisi%20Lokal/SRS%20Kelompok%203.md) dan [versi Word](pti/Revisi%20Lokal/SRS%20Kelompok%203.docx) memuat prioritas, kriteria penerimaan dan skenario U-01–U-04.
-- [SDD revisi](pti/Revisi%20Lokal/Laporan_SDD_UD_Grating_Sejahterah_Kelompok_3.docx) dan [diagram desain revisi](pti/Revisi%20Lokal/Diagram%20Desain%20UD%20Grating%20Sejahterah.drawio) memuat kontrak API, model data, tujuh kelompok layar dan wireframe pengajuan.
-- [Proposal revisi](pti/Revisi%20Lokal/PROPOSAL_PTI-UDGratingSEJAHTERAH.docx) dan [logbook revisi](pti/Revisi%20Lokal/Kelompok%203.docx) menjelaskan masalah usaha, batas proyek dan target demo.
-- Dokumen tingkat atas dan [diagram Minggu 6](pti/Diagram%20Minggu%206/) memberi konteks versi awal. Berkas UTS berisi indeks dokumen. Bukti Google Docs, media hasil ekstraksi dan template SRS merupakan bahan akademik. [Gambar referensi dari pengguna](pti/referensi-visual.png) menjadi acuan tampilan.
+Bahan sumber disimpan di folder lokal `pti`.
+
+- SRS revisi dan matriks FR/UC memuat prioritas, kriteria penerimaan dan skenario U-01–U-04.
+- SDD dan diagram desain revisi memuat kontrak API, model data, tujuh kelompok layar dan wireframe pengajuan.
+- Proposal dan logbook revisi menjelaskan masalah usaha, batas proyek dan target demo.
+- Dokumen awal, diagram Minggu 6, indeks UTS dan gambar referensi pengguna memberi konteks versi awal dan arah visual.
